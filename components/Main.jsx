@@ -3,26 +3,32 @@
 import React, { useEffect, useState } from 'react'
 import { Combobox } from './ui/combobox';
 import { useRouter, useSearchParams } from 'next/navigation';
+import api from '@/services/instance';
+import {hitsToSelectItems} from '@/lib/utils';
 
 
-const Main = ({ url, data }) => {
+const getData = async () => {
+  const response = await api.post('/search', {
+    url_path: 'avasusbr__usuario/_search',
+    body: { query: { match_all: {} } },
+  });
+  return hitsToSelectItems(await response.data.hits.hits);
+}
 
-  const router = useRouter();
-  const searchParams = useSearchParams();
+const Main = () => {
+
+  const [data, setData] = useState([]);
   const [aluno, setAluno] = useState([]);
 
-  const handleChangeAluno = (value) => {
-    console.log('selecionou', value)
-    const newQuery = { ...Object.fromEntries(searchParams), aluno: aluno };
-    router.push(url + "?" + new URLSearchParams(newQuery).toString());
-  }
-
+  useEffect(() => {
+    getData().then(data => setData(data));
+  }, [])
 
   return (
     <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
       Aluno
       {aluno && (
-        <Combobox onChange={handleChangeAluno} items={data} />
+        <Combobox items={data} />
       )}
     </main>
   )
