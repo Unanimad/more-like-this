@@ -19,7 +19,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-export function Combobox({onChange, items}) {
+export function Combobox({onChange, items, placeholder}) {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
@@ -30,15 +30,15 @@ export function Combobox({onChange, items}) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-min-[200px] w-auto justify-between"
         >
           {value
             ? items.find((item) => item.value === value)?.label
-            : "Select framework..."}
+            : placeholder}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-min-[200px] w-auto p-0">
         <Command>
           <CommandInput placeholder="Procurar ..." />
           <CommandList>
@@ -51,7 +51,7 @@ export function Combobox({onChange, items}) {
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
-                    onChange(currentValue)
+                    onChange(item.value)
                   }}
                 >
                   <Check

@@ -42,6 +42,8 @@ async def search_opensearch(query: OpenSearchQuery):
             auth=HTTPBasicAuth(OPENSEARCH_USERNAME, OPENSEARCH_PASSWORD),
             headers={"Content-Type": "application/json"}
         )
+        
+        print(query.body)
 
         if response.status_code == 200:
             return response.json()
