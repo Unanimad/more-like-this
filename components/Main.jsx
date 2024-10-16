@@ -92,8 +92,6 @@ const Main = () => {
 
       // Atualiza o estado das recomendações
       setRecomendacoes(cursosRecomendados);
-
-      console.log('Recomendações encontradas:', cursosRecomendados);
     } catch (error) {
       console.error('Erro ao buscar recomendações:', error);
     }
