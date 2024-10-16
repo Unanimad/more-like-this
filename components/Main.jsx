@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import { Combobox } from './ui/combobox';
-import { Card, CardDescription, CardTitle, CardHeader, CardFooter } from './ui/card';
+import { Card, CardDescription, CardTitle, CardHeader, CardFooter, CardContent } from './ui/card';
+import { ScrollArea } from "@/components/ui/scroll-area"
 import api from '@/services/instance';
 import { hitsToSelectItems } from '@/lib/utils';
 
@@ -79,7 +80,7 @@ const Main = () => {
         body: {
           query: {
             more_like_this: {
-              fields: ['nome', 'objetivos',], // Campos para similaridade
+              fields: ['nome', 'sumario', 'objetivos', 'conteudo'], // Campos para similaridade
               like: likes,
               min_term_freq: 3, // Frequência mínima dos termos
               min_doc_freq: 3,  // Mínimo de documentos com os termos
@@ -97,8 +98,13 @@ const Main = () => {
     }
   };
 
+  const limparTodosDados = () => {
+    setCursos([]);
+    setRecomendacoes([]);
+  }
 
   const handleChangeAluno = async (idAluno) => {
+    limparTodosDados();
     try {
       const matriculas = await getMatriculas(idAluno);
       if (matriculas.length > 0) {
@@ -122,49 +128,50 @@ const Main = () => {
       {aluno && (
         <Combobox onChange={handleChangeAluno} items={aluno} placeholder={'Selecione um aluno'} />
       )}
+      <div className="grid grid-cols-2 gap-4">
+        {cursos?.length > 0 && (
+          <div className="flex flex-col">
+            <h2 className="font-bold mb-2">Matrículas em Cursos</h2>
+            <ScrollArea className="h-[calc(70vh-100px)] w-full rounded-md p-4">
+              <div className="absolute left-0 top-0 w-1 h-full bg-blue-500" />
+              {cursos.map(({ curso, matricula }, index) => (
+                <div key={index}>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{curso?._source.nome || 'Nome do Curso não encontrado'}</CardTitle>
+                    </CardHeader>
+                    <CardFooter>
+                      <small>Data da Matrícula: {matricula._source.data.matricula || 'Data não encontrada'}</small>
+                    </CardFooter>
+                  </Card>
+                </div>
+              ))}
+            </ScrollArea>
+          </div>
+        )}
 
-      {cursos?.length > 0 && (
-        <>
-          Matrículas em Cursos
-          {cursos.map(({ curso, matricula }, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>{curso?._source.nome || 'Nome do Curso não encontrado'}</CardTitle>
-                <CardDescription>{curso?._source.sumario || 'Sumário não disponível'}</CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <div>
-                  <span>Carga Horaria: {curso?._source.carga_horaria || 'N/A'}</span>
-                  <span>Categoria: {curso?._source.categoria?.nome || 'Categoria não disponível'}</span>
-                </div>
-                <div>
-                  <span>Data da Matrícula: {matricula._source.data.matricula || 'Data não encontrada'}</span>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </>
-      )}
-
-      {recomendacoes?.length > 0 && (
-        <>
-          Cursos Recomendados
-          {recomendacoes.map((recomendacao, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>{recomendacao?._source?.nome || 'Nome do Curso não encontrado'}</CardTitle>
-                <CardDescription>{recomendacao?._source?.sumario || 'Sumário não disponível'}</CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <div>
-                  <span>Carga Horária: {recomendacao?._source?.carga_horaria || 'N/A'}</span>
-                  <span>Categoria: {recomendacao?._source?.categoria?.nome || 'Categoria não disponível'}</span>
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </>
-      )}
+        {recomendacoes?.length > 0 && (
+          <div className="flex flex-col">
+            <h2 className="font-bold mb-2">Cursos Recomendados</h2>
+            <ScrollArea className="h-[calc(70vh-100px)] w-full rounded-md p-4">
+              {recomendacoes.map((recomendacao, index) => (
+                <Card key={index} className='mb-2'>
+                  <CardHeader>
+                    <CardTitle>{recomendacao?._source?.nome || 'Nome do Curso não encontrado'}</CardTitle>
+                    <CardDescription>{recomendacao?._source?.sumario || 'Sumário não disponível'}</CardDescription>
+                  </CardHeader>
+                  <CardFooter>
+                    <div>
+                      <span>Carga Horária: {recomendacao?._source?.carga_horaria || 'N/A'}</span>
+                      <span>Categoria: {recomendacao?._source?.categoria?.nome || 'Categoria não disponível'}</span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              ))}
+            </ScrollArea>
+          </div>
+        )}
+      </div>
     </main>
   )
 }
