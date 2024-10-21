@@ -14,6 +14,8 @@ load_dotenv()
 
 app = FastAPI()
 
+# uvicorn main:app --reload
+
 # Configuração do CORS
 app.add_middleware(
     CORSMiddleware,

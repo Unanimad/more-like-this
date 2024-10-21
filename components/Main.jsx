@@ -5,7 +5,7 @@ import { Combobox } from './ui/combobox';
 import { Card, CardDescription, CardTitle, CardHeader, CardFooter, CardContent } from './ui/card';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import api from '@/services/instance';
-import { hitsToSelectItems } from '@/lib/utils';
+import { formatDate, hitsToSelectItems } from '@/lib/utils';
 
 
 const Main = () => {
@@ -13,7 +13,6 @@ const Main = () => {
   const [aluno, setAluno] = useState([]);
   const [cursos, setCursos] = useState([]);
   const [recomendacoes, setRecomendacoes] = useState([]);
-
 
   const getAluno = async () => {
     const response = await api.post('/search', {
@@ -80,10 +79,10 @@ const Main = () => {
         body: {
           query: {
             more_like_this: {
-              fields: ['nome', 'sumario', 'objetivos', 'conteudo'], // Campos para similaridade
+              fields: ['nome', 'objetivos'], // Campos para similaridade
               like: likes,
-              min_term_freq: 3, // Frequência mínima dos termos
-              min_doc_freq: 3,  // Mínimo de documentos com os termos
+              min_term_freq: 1, // Frequência mínima dos termos
+              min_doc_freq: 1,  // Mínimo de documentos com os termos
             }
           }
         }
@@ -131,17 +130,16 @@ const Main = () => {
       <div className="grid grid-cols-2 gap-4">
         {cursos?.length > 0 && (
           <div className="flex flex-col">
-            <h2 className="font-bold mb-2">Matrículas em Cursos</h2>
+            <h2 className="font-bold mb-2">Porque você fez os seguintes cursos</h2>
             <ScrollArea className="h-[calc(70vh-100px)] w-full rounded-md p-4">
-              <div className="absolute left-0 top-0 w-1 h-full bg-blue-500" />
               {cursos.map(({ curso, matricula }, index) => (
                 <div key={index}>
-                  <Card>
+                  <Card className='mb-2'>
                     <CardHeader>
                       <CardTitle>{curso?._source.nome || 'Nome do Curso não encontrado'}</CardTitle>
                     </CardHeader>
                     <CardFooter>
-                      <small>Data da Matrícula: {matricula._source.data.matricula || 'Data não encontrada'}</small>
+                      <small>Em: {formatDate(matricula._source.data.matricula) || 'Data não encontrada'}</small>
                     </CardFooter>
                   </Card>
                 </div>
@@ -152,7 +150,7 @@ const Main = () => {
 
         {recomendacoes?.length > 0 && (
           <div className="flex flex-col">
-            <h2 className="font-bold mb-2">Cursos Recomendados</h2>
+            <h2 className="font-bold mb-2">Recomendamos os cursos</h2>
             <ScrollArea className="h-[calc(70vh-100px)] w-full rounded-md p-4">
               {recomendacoes.map((recomendacao, index) => (
                 <Card key={index} className='mb-2'>
