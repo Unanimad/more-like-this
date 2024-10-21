@@ -156,10 +156,10 @@ const Main = () => {
                 <Card key={index} className='mb-2'>
                   <CardHeader>
                     <CardTitle>{recomendacao?._source?.nome || 'Nome do Curso não encontrado'}</CardTitle>
-                    <CardDescription>{recomendacao?._source?.sumario || 'Sumário não disponível'}</CardDescription>
+                    <CardDescription>{recomendacao?._source?.objetivos || 'Sumário não disponível'}</CardDescription>
                   </CardHeader>
                   <CardFooter>
-                    <div>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
                       <span>Carga Horária: {recomendacao?._source?.carga_horaria || 'N/A'}</span>
                       <span>Categoria: {recomendacao?._source?.categoria?.nome || 'Categoria não disponível'}</span>
                     </div>
