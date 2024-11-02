@@ -16,7 +16,7 @@ More-Like-This é uma ferramenta de visualização de similaridade de documentos
 - pip (gerenciador de pacotes do Python)
 - npm (gerenciador de pacotes do Node.js) ou yarn
   
-### Permissões clsuter ElasticSearch/OpenSearch
+### Permissões cluster ElasticSearch/OpenSearch
 
 1. Cluster permissions:
 
