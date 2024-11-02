@@ -1,6 +1,13 @@
-# Recomendador de Cursos AVASUS
+# More-Like-This
 
-Este é um projeto que utiliza Next.js para o frontend e FastAPI para o backend.
+More-Like-This é uma ferramenta de visualização de similaridade de documentos usando ElasticSearch e o recurso More Like This (MLT). Inspirado no Transformer-Explainer, este projeto facilita a compreensão das recomendações de documentos semelhantes, incluindo um mapa de calor para destacar as partes mais relevantes dos documentos e a possibilidade de integração com MLFlow no futuro.
+
+## Funcionalidades
+
+- Visualização interativa de similaridade de documentos
+- Mapa de calor para destacar partes relevantes dos documentos
+- Exploração de campos de documentos
+- Expansão planejada com integração MLFlow
 
 ## Pré-requisitos
 
@@ -14,24 +21,15 @@ Este é um projeto que utiliza Next.js para o frontend e FastAPI para o backend.
 1. Clone o repositório:
 
 ```sh
-git clone https://git.lais.huol.ufrn.br/AVAS/avasus/recomendador
-cd recomendador
+git clone https://github.com/Unanimad/more-like-this.git
+cd more-like-this
 ```
 
-2. Crie um arquivo .env na raiz do projeto e adicione as seguintes variáveis de ambiente:
-
-```
-NEXT_PUBLIC_API_URL=http://localhost:8000
-RDS_HOST=https://api.opensearch-cluster01.lais.ufrn.br
-RDS_USERNAME=seu-usuario
-RDS_PASSWORD=sua-senha
-```
-
-3. Instale as dependências do frontend:
+2. Instale as dependências do frontend:
 
 > npm install
 
-4. Instale as dependências do backend:
+3. Instale as dependências do backend:
 
 > pip install -r requirements.txt
 
@@ -44,3 +42,13 @@ RDS_PASSWORD=sua-senha
 2. Inicie o servidor do FastAPI:
 
 > uvicorn main:app --reload
+
+## Roadmap
+
+1. Integração com MLFlow para rastreamento de experimentos
+1. Suporte a mais tipos de documentos
+1. Melhorias na interface de usuário
+
+## Licença
+
+Este projeto está sob a licença Apache 2.0. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
