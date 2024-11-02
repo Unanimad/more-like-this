@@ -2,6 +2,7 @@
 
 .env
 .venv
+venv
 *.pyc
 # dependencies
 /node_modules
