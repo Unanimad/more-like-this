@@ -1,5 +1,8 @@
 import localFont from "next/font/local";
+import '@mantine/core/styles.css';
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Recomendador de Cursos - AVASUS",
+  title: "More Like This",
   description: "",
 };
 
@@ -23,7 +26,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
