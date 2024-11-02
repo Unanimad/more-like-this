@@ -1,4 +1,3 @@
-import requests
 from fastapi import APIRouter, HTTPException
 from core.config import settings
 from utils import make_request
