@@ -1,6 +1,11 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
+class SearchQuery(BaseModel):
+    url_path: str
+    body: dict
+
+
 class DocumentSimilarityRequest(BaseModel):
     index: str
     doc_ids: Optional[List[str]] = None
@@ -12,3 +17,4 @@ class DocumentSimilarityRequest(BaseModel):
     min_word_length: Optional[int] = 0
     max_word_length: Optional[int] = None
     stop_words: Optional[List[str]] = None
+    include_score: Optional[bool] = False

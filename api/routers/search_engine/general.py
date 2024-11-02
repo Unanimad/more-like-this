@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from core.config import settings
-from schemas.search_engine import SearchQuery
+from schemas.search_engine.request import SearchQuery
 from utils import make_request
 
 router = APIRouter()
