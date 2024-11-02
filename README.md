@@ -15,6 +15,20 @@ More-Like-This é uma ferramenta de visualização de similaridade de documentos
 - Python (versão 3.7 ou superior)
 - pip (gerenciador de pacotes do Python)
 - npm (gerenciador de pacotes do Node.js) ou yarn
+  
+### Permissões clsuter ElasticSearch/OpenSearch
+
+1. Cluster permissions:
+
+  - cluster:monitor/state
+  - cluster:monitor/stats
+
+2. Indeces permissions:
+   
+  - indices:monitor/settings/get
+  - indices:monitor/stats
+  - indices:admin/mappings/get
+
 
 ## Configuração do Ambiente
 
@@ -33,6 +47,19 @@ cd more-like-this
 
 > pip install -r requirements.txt
 
+## Estrutura de Pastas da API
+
+```
+api
+├── main.py
+├── models
+│   └── __init__.py
+├── routers
+│   └── __init__.py
+└── services
+    └── __init__.py
+```
+
 ## Subir o projeto
 
 1. Inicie o servidor de desenvolvimento do Next.js:
@@ -41,7 +68,7 @@ cd more-like-this
 
 2. Inicie o servidor do FastAPI:
 
-> uvicorn main:app --reload
+> uvicorn api/main:app --reload
 
 ## Roadmap
 
