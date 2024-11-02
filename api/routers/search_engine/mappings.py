@@ -1,8 +1,8 @@
 import requests
 from fastapi import APIRouter, HTTPException, Query
 from typing import List
-from requests.auth import HTTPBasicAuth
 from core.config import settings
+from utils import make_request
 
 router = APIRouter()
 
@@ -14,11 +14,7 @@ async def get_mappings(indices: List[str] = Query(None, description="Indices nam
     mappings = {}
     for index in indices:
         full_url = f"{settings.OPENSEARCH_URL}/{index}/_mapping"
-        response = requests.get(
-            full_url,
-            auth=HTTPBasicAuth(settings.OPENSEARCH_USERNAME, settings.OPENSEARCH_PASSWORD),
-            headers={"Content-Type": "application/json"}
-        )
+        response = make_request("GET", full_url)
         if response.status_code == 200:
             mappings[index] = response.json()
         else:
