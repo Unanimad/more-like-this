@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from schemas.search_engine.request import DocumentSimilarityRequest
 from schemas.search_engine.response import DocumentSimilarityResponse
-from utils.make_request import make_request
+from utils import make_request
 from core.config import settings
 
 router = APIRouter()
