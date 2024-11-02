@@ -8,6 +8,18 @@ router = APIRouter()
 
 @router.get("/mappings")
 async def get_mappings(indices: List[str] = Query(None, description="Indices names")):
+    """
+    Get the mappings for the specified indices.
+
+    Args:
+        indices (List[str]): A list of index names to get mappings for.
+
+    Returns:
+        dict: A dictionary containing the mappings for each index.
+
+    Raises:
+        HTTPException: If the indices parameter is not provided or if there is an error in the request.
+    """
     if not indices:
         raise HTTPException(status_code=400, detail="Indices parameter is required")
     

@@ -17,6 +17,18 @@ REQUIRED_INDICES_PERMISSIONS = [
 
 @router.get("/roles/{username}")
 async def check_user_roles(username: str):
+    """
+    Check the roles and permissions of a user in OpenSearch.
+
+    Args:
+        username (str): The username to check roles for.
+
+    Returns:
+        dict: A dictionary containing the user's roles and whether they have the required permissions.
+
+    Raises:
+        HTTPException: If the user is not found or if there is an error in the request.
+    """
     full_url = f"{settings.OPENSEARCH_URL}/_security/user/{username}"
     
     response = make_request("GET", full_url)

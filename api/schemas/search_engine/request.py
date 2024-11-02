@@ -1,15 +1,15 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-class SearchQuery(BaseModel):
+class SearchQueryRequest(BaseModel):
     url_path: str
     body: dict
 
 
 class DocumentSimilarityRequest(BaseModel):
     index: str
-    doc_ids: Optional[List[str]] = None
-    fields: Optional[List[str]] = None
+    doc_ids: List[str]
+    fields: List[str]
     min_term_freq: Optional[int] = 1
     max_query_terms: Optional[int] = 25
     min_doc_freq: Optional[int] = 1
