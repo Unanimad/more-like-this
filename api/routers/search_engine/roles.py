@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from core.config import settings
 from utils import make_request
 
-router = APIRouter()
+router = APIRouter(tags=["Roles"])
 
 REQUIRED_CLUSTER_PERMISSIONS = [
     "cluster:monitor/state",

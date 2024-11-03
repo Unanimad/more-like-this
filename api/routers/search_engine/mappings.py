@@ -4,7 +4,7 @@ from typing import List
 from core.config import settings
 from utils import make_request
 
-router = APIRouter()
+router = APIRouter(tags=["Mappings"])
 
 @router.get("/mappings")
 async def get_mappings(indices: List[str] = Query(None, description="Indices names")):

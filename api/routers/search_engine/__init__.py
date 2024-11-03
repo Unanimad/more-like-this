@@ -5,7 +5,7 @@ from .roles import router as roles_router
 
 from fastapi import APIRouter
 
-router = APIRouter(prefix="/search_engine")
+router = APIRouter(prefix="/search_engine", tags=["ElasticSearch/OpenSearch"])
 
 router.include_router(mappings_router)
 router.include_router(general_router)

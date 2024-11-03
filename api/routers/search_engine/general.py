@@ -3,7 +3,7 @@ from core.config import settings
 from schemas.search_engine.request import SearchQueryRequest
 from utils import make_request
 
-router = APIRouter()
+router = APIRouter(tags=["General"])
 
 @router.post("/search")
 async def search(query: SearchQueryRequest):

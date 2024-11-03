@@ -4,7 +4,7 @@ from schemas.search_engine.response import DocumentSimilarityResponse
 from utils import make_request
 from core.config import settings
 
-router = APIRouter()
+router = APIRouter(tags=["Indices"])
 
 @router.post("/more-like-this", response_model=DocumentSimilarityResponse)
 async def more_like_this(request: DocumentSimilarityRequest):
