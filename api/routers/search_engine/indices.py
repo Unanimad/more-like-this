@@ -6,6 +6,30 @@ from api.core.config import settings
 
 router = APIRouter(tags=["Indices"])
 
+@router.get("/indices")
+def list_indices():
+    """
+    Return a list of all indices from Search Engine, sorted by index name.
+
+    This endpoint fetches the list of indices from the Search Engine instance
+    specified in the settings. The indices are sorted by their names before
+    being returned.
+
+    Returns:
+        list: A list of index names sorted alphabetically.
+
+    Raises:
+        HTTPException: If the request to OpenSearch fails, an HTTPException
+        is raised with the status code and error message from OpenSearch.
+    """
+    full_url = f"{settings.OPENSEARCH_URL}/_cat/indices?v&format=json&s=index"
+    response = make_request("GET", full_url)
+
+    if response.status_code == 200:
+        return [index['index'] for index in response.json()]
+    else:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+
 @router.post("/more-like-this", response_model=DocumentSimilarityResponse)
 async def more_like_this(request: DocumentSimilarityRequest):
     """
