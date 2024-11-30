@@ -1,8 +1,7 @@
-import requests
 from fastapi import APIRouter, HTTPException, Query
 from typing import List
-from core.config import settings
-from utils import make_request
+from api.core.config import settings
+from api.utils import make_request
 
 router = APIRouter(tags=["Mappings"])
 

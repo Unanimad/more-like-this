@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from core.middleware import setup_middleware
-from routers import router
+from api.core.middleware import setup_middleware
+from api.routers import router
 
-# uvicorn main:app --reload
+# uvicorn api.main:app --reload
 app = FastAPI()
 
 setup_middleware(app)

@@ -1,6 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
-from core.config import settings
+from api.core.config import settings
 
 def make_request(method: str, url: str, **kwargs):
     response = requests.request(

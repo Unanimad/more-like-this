@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from schemas.search_engine.request import DocumentSimilarityRequest
-from schemas.search_engine.response import DocumentSimilarityResponse
-from utils import make_request
-from core.config import settings
+from api.schemas.search_engine.request import DocumentSimilarityRequest
+from api.schemas.search_engine.response import DocumentSimilarityResponse
+from api.utils import make_request
+from api.core.config import settings
 
 router = APIRouter(tags=["Indices"])
 
