@@ -50,14 +50,43 @@ cd more-like-this
 ## Estrutura de Pastas da API
 
 ```
-api
-├── main.py
-├── models
-│   └── __init__.py
-├── routers
-│   └── __init__.py
-└── services
-    └── __init__.py
+project/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── routers/
+│   │   │   ├── __init__.py
+│   │   │   ├── mappings.py
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── middleware.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── item.py
+│   │   ├── user.py
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── search.py
+│   │   ├── item.py
+│   │   ├── user.py
+│   ├── crud/
+│   │   ├── __init__.py
+│   │   ├── item.py
+│   │   ├── user.py
+│   ├── db/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── session.py
+│   ├── tests/
+│   │   ├── __init__.py
+│   │   ├── test_items.py
+│   │   ├── test_users.py
+├── .env
+├── Dockerfile
+├── requirements.txt
 ```
 
 ## Subir o projeto
@@ -68,7 +97,7 @@ api
 
 2. Inicie o servidor do FastAPI:
 
-> uvicorn api/main:app --reload
+> uvicorn api.main:app --reload
 
 ## Roadmap
 
