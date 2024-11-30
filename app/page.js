@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <div className="h-[120vh]">
-        <LeftMenu />
+        <LeftMenu isOpen={true} />
       </div>
     </>
   );
