@@ -6,13 +6,14 @@ import Samples from "@/components/Samples";
 import SimilarityResults from "@/components/SimilarityResults";
 import useSimilarityConfig from "@/hooks/useSimilarityConfig";
 import api from "@/services/instance";
+import { useSamples } from "@/context/SampleContext";
 
 export default function Home() {
   const { config: configSimilarity, setConfig: setSimilarityConfig } = useSimilarityConfig();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedColumns, setSelectedColumns] = useState([]);
-  const [selectSamples, setSamples] = useState([]);
   const [similarityResults, setSimilarityResults] = useState([]);
+  const { samples } = useSamples();
 
   const handleSetConfigValue = (id, value) => {
     setSimilarityConfig((prevConfig) => ({
@@ -57,8 +58,8 @@ export default function Home() {
           </div>
           <div className="flex flex-col">
             <div className="flex flex-row flex-grow gap-4">
-              <div className="flex-auto">
-                <Samples samples={selectSamples} setSamples={setSamples} index={selectedIndex} columns={selectedColumns} />
+              <div className="flex-auto mt-3">
+                <Samples index={selectedIndex} columns={selectedColumns} />
               </div>
               <div className="flex-auto">
                 <SimilarityResults />

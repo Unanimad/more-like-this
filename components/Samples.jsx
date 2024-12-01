@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import CustomSelect from './Select';
 import api from '@/services/instance';
+import { useSamples } from "@/context/SampleContext";
 
-const Samples = ({ selectSamples, setSamples, index, columns }) => {
-    const [samples, setSamplesState] = useState([]);
+const Samples = ({ index, columns }) => {
+    const { setSamples } = useSamples();
+    const [options, setOptions] = useState([]);
 
     useEffect(() => {
         const fetchSamples = async () => {
