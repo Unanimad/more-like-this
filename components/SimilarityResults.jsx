@@ -1,5 +1,5 @@
-const SimilarityResults = ({}) => {
-    return (<>b</>)
+const SimilarityResults = ({ }) => {
+    return (<></>)
 }
 
 export default SimilarityResults;
