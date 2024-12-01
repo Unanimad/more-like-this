@@ -53,6 +53,7 @@ async def more_like_this(request: DocumentSimilarityRequest):
 
 
     body = {
+        "_source": fields,
         "query": {
             "more_like_this": {
                 "fields": fields,
