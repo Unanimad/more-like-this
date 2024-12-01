@@ -26,7 +26,11 @@ def list_indices():
     response = make_request("GET", full_url)
 
     if response.status_code == 200:
-        return [index['index'] for index in response.json()]
+        prefix = settings.SEARCH_ENGINE_INDEX_PREFIX
+        indices = sorted([index['index'] for index in response.json()])
+        if prefix:
+            indices = [index for index in indices if index.startswith(prefix)]
+        return indices
     else:
         raise HTTPException(status_code=response.status_code, detail=response.text)
 

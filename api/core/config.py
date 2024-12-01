@@ -12,9 +12,10 @@ class Settings:
     items_per_user: int = 50
     database_url: str = "sqlite:///./more-like-this.db"
     
-    OPENSEARCH_URL = os.getenv("RDS_HOST")
-    OPENSEARCH_USERNAME = os.getenv("RDS_USERNAME")
-    OPENSEARCH_PASSWORD = os.getenv("RDS_PASSWORD")
+    OPENSEARCH_URL = os.getenv("SEARCH_ENGINE_HOST")
+    OPENSEARCH_USERNAME = os.getenv("SEARCH_ENGINE_USERNAME")
+    OPENSEARCH_PASSWORD = os.getenv("SEARCH_ENGINE_PASSWORD")
+    SEARCH_ENGINE_INDEX_PREFIX = os.getenv("SEARCH_ENGINE_INDEX_PREFIX")
 
     class Config:
         env_file = str(BASE_DIR / ".env")
