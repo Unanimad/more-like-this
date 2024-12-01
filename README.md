@@ -28,6 +28,7 @@ More-Like-This é uma ferramenta de visualização de similaridade de documentos
   - indices:monitor/settings/get
   - indices:monitor/stats
   - indices:admin/mappings/get
+  - indices:data/read/search
 
 
 ## Configuração do Ambiente
