@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils';
 import React, { useEffect, useState } from 'react';
 import CustomSelect from './Select';
+import { IoMenu, IoClose } from "react-icons/io5";
 import api from '@/services/instance';
 
 const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns }) => {
@@ -57,11 +58,11 @@ const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns 
     };
 
     return (
-        <div className='p-4 h-full max-w-[400px] shadow-md'>
-            <button onClick={() => setIsOpen(!isOpen)}>Menu</button>
+        <div className={`${isOpen ? 'w-[19rem]' : 'max-w-[0]'} block transition-all duration-300 ease-in-out shadow-md fixed z-20 inset-0 top-[5rem] left-[max(0px,calc(10%-45rem))] right-aut pb-10 pl-8 pr-6 bg-white`}>
+            <button className='absolute left-2' onClick={() => setIsOpen(!isOpen)}>{isOpen ? <IoClose size={30} /> : <IoMenu size={40} />}</button>
             <div
                 className={cn(
-                    `${isOpen ? 'max-w-[400px]' : 'max-w-0'} overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full`
+                    ` overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full pt-10`
                 )}
             >
                 <div>

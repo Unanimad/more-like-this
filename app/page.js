@@ -43,7 +43,7 @@ export default function Home() {
   }, [selectedIndex, selectedColumns, selectSamples, configSimilarity]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-[82vh]">
       <div className="flex flex-row flex-grow gap-4">
         <div className="w-1/4">
           <LeftMenu isOpen={true} setSelectedIndex={setSelectedIndex}
