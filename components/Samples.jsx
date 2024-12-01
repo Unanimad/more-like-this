@@ -22,13 +22,14 @@ const Samples = ({ index, columns }) => {
                     }
                 });
 
+                console.log("Samples", response)
                 const data = await response.data;
                 const options = data.hits.hits.map(hit => ({
                     value: hit._id,
                     label: hit._source.nome
                 }));
-                console.log(options)
-                setSamplesState(options);
+                setOptions(options);
+                console.log(options);
             } catch (error) {
                 console.error('Error fetching indices or performing search:', error);
             }
@@ -38,7 +39,7 @@ const Samples = ({ index, columns }) => {
 
     return (
         <div>
-            <CustomSelect options={samples} />
+            <CustomSelect multiple label="Samples" data={options && options} onSelect={(e) => setSamples(e)} />
         </div>
     );
 };
