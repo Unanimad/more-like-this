@@ -33,6 +33,10 @@ body {
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
+    --input-background: 255 255 255; 
+    --input-foreground: 0 0 0; 
+    --input-focus-background: 240 240 240; 
+    --input-focus-border: 0 120 215;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -74,5 +78,28 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+  input, select, textarea {
+    background-color: rgb(var(--input-background));
+    color: rgb(var(--input-foreground));
+    @apply border border-border rounded;
+  }
+  input:focus, select:focus, textarea:focus {
+    background-color: rgb(var(--input-focus-background));
+    border-color: rgb(var(--input-focus-border));
+    outline: none;
+  }
+  input:hover, select:hover, textarea:hover {
+    background-color: rgb(var(--input-focus-background));
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
   }
 }

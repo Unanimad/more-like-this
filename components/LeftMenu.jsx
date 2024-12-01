@@ -4,7 +4,11 @@ import React, { useEffect, useState } from 'react';
 import CustomSelect from './Select';
 import api from '@/services/instance';
 
-const LeftMenu = ({ isOpen: initialIsOpen }) => {
+const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns }) => {
+    const handleSelectColumns = (selectedOptions) => {
+        setSelectedColumns(selectedOptions);
+    };
+
     const [isOpen, setIsOpen] = useState(initialIsOpen);
     const [indices, setIndices] = useState([]);
     const [mappings, setMappings] = useState([]);
@@ -23,12 +27,12 @@ const LeftMenu = ({ isOpen: initialIsOpen }) => {
                 console.error('Error fetching indices:', error);
             }
         };
-
         fetchIndices();
     }, []);
 
     const fetchIndexMapping = async (selectedIndices) => {
         console.log('Selected indices:', selectedIndices);
+        setSelectedIndex(selectedIndices);
         try {
             const response = await api.get('/search_engine/mappings', {
                 params: { indices: selectedIndices }
@@ -72,6 +76,7 @@ const LeftMenu = ({ isOpen: initialIsOpen }) => {
                         data={mappings.map(mapping => ({ value: mapping, label: mapping }))}
                         label="Select column(s)"
                         multiple={true}
+                        onSelect={handleSelectColumns}
                     />
                 </div>
             </div>
