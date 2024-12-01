@@ -5,13 +5,13 @@ import CustomSelect from './Select';
 import api from '@/services/instance';
 
 const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns }) => {
-    const handleSelectColumns = (selectedOptions) => {
-        setSelectedColumns(selectedOptions);
-    };
-
     const [isOpen, setIsOpen] = useState(initialIsOpen);
     const [indices, setIndices] = useState([]);
     const [mappings, setMappings] = useState([]);
+
+    const handleSelectColumns = (selectedOptions) => {
+        setSelectedColumns(selectedOptions);
+    };
 
     useEffect(() => {
         setIsOpen(initialIsOpen);
