@@ -3,15 +3,14 @@ import { useState } from 'react';
 
 const useSimilarityConfig = () => {
   const [config, setConfig] = useState({
-    threshold: 0.5,
-    maxResults: 10,
-    minTermFreq: 1,
-    maxQueryTerms: 25,
-    minDocFreq: 1,
-    maxDocFreq: 100,
-    minWordLength: 0,
-    maxWordLength: 0,
-    stopwords: ''
+    // threshold: 0.5,
+    min_term_freq: 1,
+    max_query_terms: 25,
+    min_doc_freq: 1,
+    // max_doc_freq: 100,
+    min_word_length: 0,
+    // max_word_length: 0,
+    // stop_words: []
   });
 
   return { config, setConfig };

@@ -26,21 +26,23 @@ export default function Home() {
     const fetchSimilarityResults = async () => {
       try {
         const response = await api.post('/search_engine/more-like-this', {
-          selectedIndex,
-          selectedColumns,
-          samples: selectSamples,
-          ...configSimilarity
+          index: selectedIndex,
+          fields: selectedColumns,
+          doc_ids: samples,
+          ...configSimilarity,
         });
         setSimilarityResults(response.data);
+        console.log("FETCHED")
       } catch (error) {
         console.error('Error fetching similarity results:', error);
       }
     };
 
-    if (selectedIndex !== null && selectedColumns.length > 0 && selectSamples.length > 0) {
+    if (selectedIndex !== null && selectedColumns.length > 0 && samples !== null) {
       fetchSimilarityResults();
     }
-  }, [selectedIndex, selectedColumns, selectSamples, configSimilarity]);
+    console.log("FETCHING")
+  }, [selectedIndex, selectedColumns, samples, configSimilarity]);
 
   return (
     <div className="flex flex-col min-h-[82vh]">

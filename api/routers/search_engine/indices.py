@@ -34,7 +34,7 @@ def list_indices():
     else:
         raise HTTPException(status_code=response.status_code, detail=response.text)
 
-@router.post("/more-like-this", response_model=DocumentSimilarityResponse)
+@router.post("/more-like-this")
 async def more_like_this(request: DocumentSimilarityRequest):
     """
     Find documents similar to the given document IDs based on the specified fields.
@@ -48,22 +48,22 @@ async def more_like_this(request: DocumentSimilarityRequest):
     Raises:
         HTTPException: If no documents are found to recommend or if there is an error in the request.
     """
-    likes = [{"_index": request.index, "_id": doc_id} for doc_id in request.doc_ids]
+    likes = [{"_id": doc_id} for doc_id in request.doc_ids]
     fields = request.fields
+
 
     body = {
         "query": {
             "more_like_this": {
                 "fields": fields,
                 "like": likes,
-                "min_term_freq": request.min_term_freq,
-                "max_query_terms": request.max_query_terms,
-                "min_doc_freq": request.min_doc_freq,
-                "max_doc_freq": request.max_doc_freq,
-                "min_word_length": request.min_word_length,
-                "max_word_length": request.max_word_length,
-                "stop_words": request.stop_words,
-                "include_score": request.include_score
+                # "min_term_freq": request.min_term_freq,
+                # "max_query_terms": request.max_query_terms,
+                # "min_doc_freq": request.min_doc_freq,
+                # "max_doc_freq": request.max_doc_freq,
+                # "min_word_length": request.min_word_length,
+                # "max_word_length": request.max_word_length,
+                # "stop_words": request.stop_words,
             }
         }
     }
@@ -74,9 +74,9 @@ async def more_like_this(request: DocumentSimilarityRequest):
         full_url,
         json=body
     )
-
+    breakpoint()
     if response.status_code == 200:
         return response.json()
     else:
-        raise HTTPException(status_code=response.status_code, detail=response.text)
+        raise HTTPException(status_code=response.status_code, detail=response)
 

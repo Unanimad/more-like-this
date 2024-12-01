@@ -7,15 +7,14 @@ const SimilarityConfig = ({ config, setConfigValue }) => {
     }
 
     const configFields = [
-        { id: 'threshold', label: 'Threshold', value: config.threshold, type: 'number', min: 0, max: 1, step: 0.01 },
-        { id: 'maxResults', label: 'Max Results', value: config.maxResults, type: 'number', min: 1 },
-        { id: 'minTermFreq', label: 'Min Term Frequency', value: config.minTermFreq, type: 'number', min: 1 },
-        { id: 'maxQueryTerms', label: 'Max Query Terms', value: config.maxQueryTerms, type: 'number', min: 1 },
-        { id: 'minDocFreq', label: 'Min Document Frequency', value: config.minDocFreq, type: 'number', min: 1 },
-        { id: 'maxDocFreq', label: 'Max Document Frequency', value: config.maxDocFreq, type: 'number', min: 1 },
-        { id: 'minWordLength', label: 'Min Word Length', value: config.minWordLength, type: 'number', min: 0 },
-        { id: 'maxWordLength', label: 'Max Word Length', value: config.maxWordLength, type: 'number', min: 0 },
-        { id: 'stopwords', label: 'Stopwords (comma separated)', value: config.stopwords, type: 'text' }
+        // { id: 'threshold', label: 'Threshold', value: config.threshold, type: 'number', min: 0, max: 1, step: 0.01 },
+        { id: 'min_term_freq', label: 'Min Term Frequency', value: config.min_term_freq, type: 'number', min: 1 },
+        { id: 'max_query_terms', label: 'Max Query Terms', value: config.max_query_terms, type: 'number', min: 1 },
+        { id: 'min_doc_freq', label: 'Min Document Frequency', value: config.min_doc_freq, type: 'number', min: 1 },
+        // { id: 'max_doc_freq', label: 'Max Document Frequency', value: config.max_doc_freq, type: 'number', min: 1 },
+        { id: 'min_word_length', label: 'Min Word Length', value: config.min_word_length, type: 'number', min: 0 },
+        // { id: 'max_word_length', label: 'Max Word Length', value: config.max_word_length, type: 'number', min: 0 },
+        // { id: 'stop_words', label: 'Stopwords (comma separated)', value: config.stop_words, type: 'text' }
     ];
 
     return (
