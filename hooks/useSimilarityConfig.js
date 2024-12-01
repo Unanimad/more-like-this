@@ -1,4 +1,4 @@
-// hooks/useSimilarityConfig.js
+// useSimilarityConfig.js
 import { useState } from 'react';
 
 const useSimilarityConfig = () => {
@@ -14,17 +14,7 @@ const useSimilarityConfig = () => {
     stopwords: ''
   });
 
-  const setConfigValue = (key, value) => {
-    setConfig(prevConfig => ({
-      ...prevConfig,
-      [key]: value
-    }));
-  };
-
-  return {
-    config,
-    setConfigValue
-  };
+  return { config, setConfig };
 };
 
 export default useSimilarityConfig;

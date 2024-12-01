@@ -12,6 +12,13 @@ export default function Home() {
   const [selectSample, setSample] = useState([]);
   const [similarityResults, setSimilarityResults] = useState([]);
 
+  const handleSetConfigValue = (id, value) => {
+    setSimilarityConfig((prevConfig) => ({
+      ...prevConfig,
+      [id]: value,
+    }));
+  };
+
   useEffect(() => {
     const fetchSimilarityResults = async () => {
       try {
@@ -46,7 +53,7 @@ export default function Home() {
               selectedColumns={selectedColumns}
               sample={selectSample}
               config={configSimilarity}
-              setConfigValue={setSimilarityConfig}
+              setConfigValue={handleSetConfigValue}
             />
           </div>
         </div>
