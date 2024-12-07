@@ -5,7 +5,7 @@ import api from '@/services/instance';
 import { useSamples } from "@/context/SampleContext";
 
 const Samples = ({ index, columns }) => {
-    const { setSamples } = useSamples();
+    const { setSamples, selectedIndex, selectedColumns } = useSamples();
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const Samples = ({ index, columns }) => {
 
     return (
         <div>
-            <CustomSelect multiple label="Samples" data={options && options} onSelect={(e) => setSamples(e)} />
+            <CustomSelect multiple label="Samples" data={options && options} onSelect={(e) => setSamples(e)} isLoading={options.length === 0 && selectedIndex && selectedColumns} />
         </div>
     );
 };

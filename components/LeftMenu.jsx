@@ -71,27 +71,41 @@ const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns 
             </div>
             <div
                 className={cn(
-                    `overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full pt-10`
+                    `overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full pt-3`
                 )}
             >
-                <div className='pl-8 pr-6 border-b-2'>
-                    <h1 className="text-1xl font-bold">Search Engine</h1>
-                    <div>
-                        <CustomSelect
-                            onSelect={fetchIndexMapping}
-                            data={indices}
-                            label="Select an index"
-                        />
+                <div className='px-2 border-b-[1px]'>
+                    <div className='flex justify-between items-center'>
+                        <h1 className="text-1xl text-zinc-950 font-bold">Search Engine</h1>
+                        <div className={`${colapsed ? '' : 'rotate-180'} rounded-full p-1 hover:bg-slate-600 hover:text-white cursor-pointer transition-all duration-100}`} onClick={() => setColapsed(!colapsed)}>
+                            <IoChevronDownOutline size={23} />
+                        </div>
                     </div>
-                    <div>
-                        <CustomSelect
-                            data={mappings.map(mapping => ({ value: mapping, label: mapping }))}
-                            label="Select column(s)"
-                            multiple={true}
-                            onSelect={handleSelectColumns}
-                        />
+                    <div className={`${colapsed ? 'max-h-full' : 'max-h-0 opacity-0'} pl-8 pr-6 transition-all duration-150`}>
+                        <div>
+                            <CustomSelect
+                                isLoading={indices.length === 0}
+                                onSelect={fetchIndexMapping}
+                                data={indices}
+                                label="Select an index"
+                            />
+                        </div>
+                        <div>
+                            <CustomSelect
+                                isLoading={mappings.length === 0}
+                                data={mappings.map(mapping => ({ value: mapping, label: mapping }))}
+                                label="Select column(s)"
+                                multiple={true}
+                                onSelect={handleSelectColumns}
+                            />
+                            <SimilarityConfig
+                                config={configSimilarity}
+                                setConfigValue={handleSetConfigValue}
+                            />
+                        </div>
                     </div>
                 </div>
+
 
             </div>
 
