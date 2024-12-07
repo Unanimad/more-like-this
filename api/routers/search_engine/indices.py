@@ -35,7 +35,7 @@ def list_indices():
         raise HTTPException(status_code=response.status_code, detail=response.text)
 
 @router.post("/more-like-this")
-async def more_like_this(request: DocumentSimilarityRequest):
+def more_like_this(request: DocumentSimilarityRequest):
     """
     Find documents similar to the given document IDs based on the specified fields.
 
@@ -51,18 +51,17 @@ async def more_like_this(request: DocumentSimilarityRequest):
     likes = [{"_id": doc_id} for doc_id in request.doc_ids]
     fields = request.fields
 
-
     body = {
         "_source": fields,
         "query": {
             "more_like_this": {
                 "fields": fields,
                 "like": likes,
-                # "min_term_freq": request.min_term_freq,
-                # "max_query_terms": request.max_query_terms,
-                # "min_doc_freq": request.min_doc_freq,
+                "min_term_freq": request.min_term_freq,
+                "max_query_terms": request.max_query_terms,
+                "min_doc_freq": request.min_doc_freq,
                 # "max_doc_freq": request.max_doc_freq,
-                # "min_word_length": request.min_word_length,
+                "min_word_length": request.min_word_length,
                 # "max_word_length": request.max_word_length,
                 # "stop_words": request.stop_words,
             }
@@ -75,7 +74,7 @@ async def more_like_this(request: DocumentSimilarityRequest):
         full_url,
         json=body
     )
-    breakpoint()
+
     if response.status_code == 200:
         return response.json()
     else:
