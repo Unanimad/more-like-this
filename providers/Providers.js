@@ -1,11 +1,14 @@
 "use client";
 
 import { SampleProvider } from "@/context/SampleContext";
+import { MantineProvider } from "@mantine/core";
 
 export const Providers = ({ children }) => {
     return (
-        <SampleProvider>
-            {children}
-        </SampleProvider>
+        <MantineProvider>
+            <SampleProvider>
+                {children}
+            </SampleProvider>
+        </MantineProvider>
     );
 };
