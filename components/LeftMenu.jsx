@@ -58,29 +58,43 @@ const LeftMenu = ({ isOpen: initialIsOpen, setSelectedIndex, setSelectedColumns 
     };
 
     return (
-        <div className={`${isOpen ? 'w-[19rem]' : 'max-w-[0]'} block transition-all duration-300 ease-in-out shadow-md fixed z-20 inset-0 top-[5rem] left-[max(0px,calc(10%-45rem))] right-aut pb-10 pl-8 pr-6 bg-white`}>
-            <button className='absolute left-2' onClick={() => setIsOpen(!isOpen)}>{isOpen ? <IoClose size={30} /> : <IoMenu size={40} />}</button>
-            <div
-                className={cn(
-                    ` overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full pt-10`
-                )}
-            >
-                <div>
-                    <CustomSelect
-                        onSelect={fetchIndexMapping}
-                        data={indices}
-                        label="Select an index"
-                    />
+        <div className={`${isOpen ? 'w-[19rem]' : 'max-w-[0]'} block transition-all duration-300 ease-in-out shadow-md fixed z-20 inset-0 left-[max(0px,calc(10%-45rem))] right-aut pb-10 bg-white`}>
+            <div className='flex items-center justify-between p-2 pt-4'>
+                <div className="text-xl font-bold pl-6" onClick={() => setIsOpen(!isOpen)}>
+                    More-like-this
                 </div>
-                <div>
-                    <CustomSelect
-                        data={mappings.map(mapping => ({ value: mapping, label: mapping }))}
-                        label="Select column(s)"
-                        multiple={true}
-                        onSelect={handleSelectColumns}
-                    />
+                <div className='flex items-center'>
+                    <button className='relative' onClick={() => setIsOpen(!isOpen)}>
+                        {isOpen ? <IoClose size={30} /> : <></>}
+                    </button>
                 </div>
             </div>
+            <div
+                className={cn(
+                    `overflow-hidden overflow-y-auto transition-all duration-300 ease-in-out h-full pt-10`
+                )}
+            >
+                <div className='pl-8 pr-6 border-b-2'>
+                    <h1 className="text-1xl font-bold">Search Engine</h1>
+                    <div>
+                        <CustomSelect
+                            onSelect={fetchIndexMapping}
+                            data={indices}
+                            label="Select an index"
+                        />
+                    </div>
+                    <div>
+                        <CustomSelect
+                            data={mappings.map(mapping => ({ value: mapping, label: mapping }))}
+                            label="Select column(s)"
+                            multiple={true}
+                            onSelect={handleSelectColumns}
+                        />
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     );
 };

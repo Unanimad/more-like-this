@@ -23,7 +23,7 @@ const SimilarityConfig = ({ config, setConfigValue }) => {
             <div className="flex flex-wrap">
                 {configFields.map(({ id, label, value, type, ...rest }) => (
                     <div key={id} className="mb-4 px-2 w-1/4">
-                        <label htmlFor={id} className="block text-gray-700 font-bold mb-2">{label}:</label>
+                        <label htmlFor={id} className="block text-gray-700 mb-2">{label}:</label>
                         <input
                             type={type}
                             id={id}
