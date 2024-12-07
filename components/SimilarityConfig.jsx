@@ -18,12 +18,11 @@ const SimilarityConfig = ({ config, setConfigValue }) => {
     ];
 
     return (
-        <div className='p-2 shadow-md'>
-            <h1 className="text-2xl font-bold mb-4">Similarity Configuration</h1>
-            <div className="flex flex-wrap">
+        <div className=''>
+            <div className="">
                 {configFields.map(({ id, label, value, type, ...rest }) => (
-                    <div key={id} className="mb-4 px-2 w-1/4">
-                        <label htmlFor={id} className="block text-gray-700 mb-2">{label}:</label>
+                    <div key={id} className="my-3">
+                        <label htmlFor={id} className="text-gray-700 text-sm font-bold mb-2">{label}:</label>
                         <input
                             type={type}
                             id={id}
