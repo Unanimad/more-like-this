@@ -31,8 +31,8 @@ export default function Home() {
           doc_ids: samples,
           ...configSimilarity,
         });
+
         setSimilarityResults(response.data);
-        console.log("FETCHED")
       } catch (error) {
         console.error('Error fetching similarity results:', error);
       }
@@ -63,9 +63,10 @@ export default function Home() {
               <div className="flex-auto mt-3">
                 <Samples index={selectedIndex} columns={selectedColumns} />
               </div>
-              <div className="flex-auto">
-                <SimilarityResults />
-              </div>
+              
+            </div>
+            <div>
+              <SimilarityResults data={similarityResults} columns={selectedColumns} />
             </div>
           </div>
         </div>
