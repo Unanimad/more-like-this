@@ -1,0 +1,61 @@
+.driver-popover.driverjs-theme {
+  background-color: white;
+  color: #000;
+  font-family: "Raleway", sans-serif !important;
+}
+
+.driver-popover.driverjs-theme .driver-popover-title {
+  font-size: 20px;
+  color: black;
+}
+
+.driver-popover.driverjs-theme .driver-popover-description,
+.driver-popover.driverjs-theme .driver-popover-progress-text {
+  color: #000;
+}
+
+.driver-popover.driverjs-theme button.driver-popover-prev-btn,
+.driver-popover.driverjs-theme button.driver-popover-next-btn {
+  background-color: #cccccc;
+  color: black;
+  text-shadow: none;
+  border: none;
+  width: 83px;
+  text-align: center;
+  padding: 8px 8px;
+  border-radius: 30px;
+  outline: none;
+  font-weight: 600;
+}
+.driver-popover.driverjs-theme .driver-popover-navigation-btns {
+  /* justify-content: space-between;
+  gap: 3px; */
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn {
+  color: #9b9b9b;
+}
+
+.driver-popover.driverjs-theme .driver-popover-close-btn:hover {
+  color: #000;
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-left.driver-popover-arrow {
+  border-left-color: black;
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-right.driver-popover-arrow {
+  border-right-color: black;
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-top.driver-popover-arrow {
+  border-top-color: black;
+}
+
+.driver-popover.driverjs-theme
+  .driver-popover-arrow-side-bottom.driver-popover-arrow {
+  border-bottom-color: black;
+}
